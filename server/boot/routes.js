@@ -7,29 +7,16 @@ module.exports = function(app) {
   const path = require('path');
   const multer  = require('multer');
   const multerS3 = require('multer-s3')
-  const aws = require('aws-sdk')
-  const spacesEndpoint = new aws.Endpoint('sfo2.digitaloceanspaces.com');
+  const aws = require('aws-sdk');
+  const { fileUpload } = require('../../config');
   const { github_credentials, base_url } = require('../app/misc/constants');
-  const bodyParser = require('body-parser')
+  const bodyParser = require('body-parser');
   app.use(bodyParser.urlencoded({ extended: false }))
 
   // parse application/json
   app.use(bodyParser.json())
-  // aws.config.update({
-  //   secretAccessKey: 'Hrx1uwtkL+UUlf4ou9HnDG9t0LpaW/r8oTGyPSi8fTY',
-  //   accessKeyId: 'QH3IZ37TWO7KQ7P3RJ6U'
-  // });
-  var s3 = new aws.S3({
-    endpoint: spacesEndpoint,
-    credentials: new aws.Credentials({
-    accessKeyId: 'XEKCGBLUY3MMFFGZ52AC',
-    secretAccessKey: 'knF5NOqv82gGQSCb7lIUaH3tj1CYNpZTbSz4at3ZP3U'
-    })
-  });
 
-  var params = {
-    Bucket: "https://opensourcerepos.sfo2.digitaloceanspaces.com"
-  };
+  var s3 = new aws.S3(fileUpload);
 
   var upload = multer({
     storage: multerS3({
