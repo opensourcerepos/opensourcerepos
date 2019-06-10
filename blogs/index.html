@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Open Source Repos | architecture and code walkthrough of open source repository</title>
+    <meta name="description" content="Open Source Repos is a blog site for explaining the architecture, code-walkthrough and key takeways for the github repository. Out main aim to is to help more developers contribute to open source projects.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="opensource, blogs, architecture, code-walkthrough, repository, github, gitlab, bitbucket"/>
+    <meta name="language" content="EN">
+    <meta name="og:title" content="OpenSourceRepos"/>
+    <meta name="og:type" content="web application"/>
+    <meta name="og:url" content="https://opensourcerepos.com"/>
+    <meta name="og:image" content="https://opensourcerepos.com/images/logo.png"/>
+    <meta name="og:site_name" content="OpenSourceRepos"/>
+    <meta name="og:description" content="Open Source Repos is a blog site for explaining the architecture, code-walkthrough and key takeways for the github repository. Out main aim to is to help more developers contribute to open source projects."/>
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+<link rel="manifest" href="/images/site.webmanifest">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-141552683-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-141552683-1');
+</script>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <header class="mb-4">
+<div class="container">
+<nav class="navbar navbar-expand-lg navbar-light px-0 mx-0">
+        <a class="navbar-brand" href="/">OpenSourceRepos</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li>
+              <form class="form-inline my-2 my-lg-0" method="GET" action="/app/search">
+                <input class="form-control mr-sm-2 custom-input-element" id="searchNavBar" name="repo" type="search" placeholder="Search repository" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+              </form>
+            </li>
+          </ul>
+
+        <div class="my-lg-0">
+          <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                  <a class="nav-link" href="/app/about">About<span class="sr-only">(current)</span></a>
+                </li>
+              <li class="nav-item active" id="navbar-newblog-link">
+
+              </li>
+              <li class="nav-item active" id="navbar-profile-link">
+
+              </li>
+          </ul>
+        </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+  <script>
+function signinWithGithub(){
+  window.location.href = "https://github.com/login/oauth/authorize?client_id=86c62f3ed3258e96e6a0&redirect_uri=http://localhost:8000/signin/callback/github";
+}
+
+$(document).ready(function(){
+  var username = Cookies.get('username');
+if(typeof username === 'undefined'){
+  $("#navbar-profile-link").html(`
+    <a href="https://github.com/login/oauth/authorize?scope=user:email%20read:user&client_id=86c62f3ed3258e96e6a0" class="btn btn-primary">Sign in</a>
+  `);
+}else{
+  $("#navbar-newblog-link").html(`
+    <a class="nav-link" href="/app/new-blog">New Blog<span class="sr-only">(current)</span></a>
+  `)
+  $("#navbar-profile-link").html('<a class="nav-link" href="/app/profile">'+username+'</a>');
+}
+
+})
+
+</script>
+    <div class="container">
+      
+        <!-- <div class="row">
+  <div class="card  ml-2 mr-2 mb-2 mt-2" style="width: 18rem;">
+    <img src="..." class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title"><a href="#">Architecture of webpack</a></h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    </div>
+  </div>
+
+  <div class="card ml-2 mr-2 mb-2 mt-2" style="width: 18rem;">
+      <img src="..." class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title"><a href="#">Keytakeways of react application</a></h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      </div>
+    </div>
+
+</div> -->
+<div class="row">
+  
+    <div class="card  ml-2 mr-2 mb-2 mt-2" style="width: 18rem;">
+        <!-- <img src="" class="card-img-top" alt="This is the title of the blog"> -->
+        <div class="card-body">
+          
+            <h5 class="card-title"><a href="/app/blog/16/this-is-the-title-of-the-blog" data-testid="blog-title">This is the title of the blog</a></h5>
+          
+            <p class="card-text"></p>
+          
+          <div class="card-tags">
+            
+            <button type="button" data-testid="repo_name" class="btn btn-secondary btn-sm"><img height="16" width="20" class="mr-2" src="/images/github_white.svg" alt="github repo"/>facebook/react</button>
+            
+          </div>
+          <div class="card-tags mt-2">
+            <button type="button" class="btn btn-secondary btn-sm"><img height="16" width="20" class="mr-1" src="/images/github_tag_white.svg" alt="repository version"/> v16.9.0-alpha.0</button>
+            <button type="button" class="btn btn-secondary btn-sm"><img height="16" width="20" class="mr-1" src="/images/github_branch_white.svg" alt="repository branch"/>0.3-stable</button>
+
+          </div>
+        </div>
+
+      </div>
+  
+  </div>
+      
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.11/lodash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="/javascripts/project-list.js"></script>
+  </body>
+</html>

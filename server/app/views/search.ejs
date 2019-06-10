@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Search | Open Source Repos</title>
+    <meta name="description" content="Search results for blogs in opensourcerepos">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="search, blogs, opensourcerepos"/>
+    <meta name="language" content="EN">
+    <meta name="og:title" content="Search OpenSourceRepos"/>
+    <meta name="og:type" content="web application"/>
+    <meta name="og:url" content="https://opensourcerepos.com/search"/>
+    <meta name="og:image" content="https://opensourcerepos.com/images/logo.png"/>
+    <meta name="og:site_name" content="OpenSourceRepos"/>
+    <meta name="og:description" content="Search results for blogs in opensourcerepos."/>
+    <%- include('./templates/head') -%>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <%- include('./templates/navbar', {
+      github: github,
+      base_url: base_url
+    }) -%>
+    <div class="container">
+      <% if(data.length > 0){ %>
+        <%- include('./templates/blogs-list', {
+          data: data
+        }) -%>
+      <% }else{ %>
+        No blogs found.
+      <% } %>
+    </div>
+    <%- include('./templates/footer') -%>
+    <script src="/javascripts/project-list.js"></script>
+  </body>
+</html>

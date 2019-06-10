@@ -1,0 +1,54 @@
+{
+  "_meta": {
+    "sources": [
+      "loopback/common/models",
+      "loopback/server/models",
+      "../common/models",
+      "./models"
+    ],
+    "mixins": [
+      "loopback/common/mixins",
+      "loopback/server/mixins",
+      "../common/mixins",
+      "./mixins"
+    ]
+  },
+  "User": {
+    "dataSource": "memdb"
+  },
+  "AccessToken": {
+    "dataSource": "memdb",
+    "public": false
+  },
+  "ACL": {
+    "dataSource": "memdb",
+    "public": false
+  },
+  "RoleMapping": {
+    "dataSource": "memdb",
+    "public": false,
+    "options": {
+      "strictObjectIDCoercion": true
+    }
+  },
+  "Role": {
+    "dataSource": "memdb",
+    "public": false
+  },
+  "tags": {
+    "dataSource": "opensourcerepos",
+    "public": true
+  },
+  "blog": {
+    "dataSource": "opensourcerepos",
+    "public": true
+  },
+  "app-users": {
+    "dataSource": "opensourcerepos",
+    "public": true
+  },
+  "repo": {
+    "dataSource": "opensourcerepos",
+    "public": true
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "opensourcerepos": {
+    "host": "db-postgresql-sfo2-09943-do-user-4319242-0.db.ondigitalocean.com",
+    "port": 25060,
+    "url": "postgres://doadmin:s0hcdb1o26363w9m@db-postgresql-sfo2-09943-do-user-4319242-0.db.ondigitalocean.com:25060/defaultdb?sslmode=require",
+    "database": "defaultdb",
+    "password": "s0hcdb1o26363w9m",
+    "name": "opensourcerepos",
+    "user": "doadmin",
+    "connector": "postgresql",
+    "ssl": true
+  }
+}

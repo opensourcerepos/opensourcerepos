@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Open Source Repos | architecture and code walkthrough of open source repository</title>
+    <meta name="description" content="Open Source Repos is a blog site for explaining the architecture, code-walkthrough and key takeways for the github repository. Out main aim to is to help more developers contribute to open source projects.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="opensource, blogs, architecture, code-walkthrough, repository, github, gitlab, bitbucket"/>
+    <meta name="language" content="ES">
+    <meta name="og:title" content="OpenSourceRepos"/>
+    <meta name="og:type" content=""/>
+    <meta name="og:url" content="http://www.imdb.com/title/tt0117500/"/>
+    <meta name="og:image" content="http://ia.media-imdb.com/rock.jpg"/>
+    <meta name="og:site_name" content="IMDb"/>
+    <meta name="og:description" content="A group of U.S. Marines, under command of..."/>
+    <%- include('./templates/head') -%>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <%- include('./templates/navbar', {
+      github: github,
+      base_url: base_url
+    }) -%>
+    <div class="container">
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link active" href="/app/profile">Profile</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/app/profile/my-blogs">My Blogs</a>
+        </li>
+      </ul>
+      <div class="profilepage">
+        <div class="row">
+          <div class="col-md-4 col-sm-12">
+            <img src="https://avatars2.githubusercontent.com/u/2167846?v=4" class="rounded mt-2" width="100%" alt="Profile photo"/>
+          </div>
+          <div class="col-md-8 col-sm-12">
+            <div class="row p-2">
+              Name: Santosh
+            </div>
+            <div class="row p-2">
+              Email: santoshg.dev@gmail.com
+            </div>
+            <div class="row p-2">
+              Source: Github
+            </div>
+            <div class="row p-2">
+              <a href="/api/app-users/logout" class="btn btn-primary">Logout</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%- include('./templates/footer') -%>
+    <script src="/javascripts/project-list.js"></script>
+  </body>
+</html>

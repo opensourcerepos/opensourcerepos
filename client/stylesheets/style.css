@@ -1,0 +1,141 @@
+/* body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+} */
+body{
+  background: #fff !important;
+  font-family: 'Merriweather', serif;
+  line-height: 1.9;
+}
+header{
+  /* position: fixed; */
+  min-width: auto;
+  box-shadow: 0 1px 0 rgba(12,13,14,0.1), 0 1px 6px rgba(59,64,69,0.1);
+}
+a {
+  color: #00B7FF;
+}
+
+.d-flex-column{
+  flex-direction: column;
+}
+
+.project-action-buttons button{
+  max-width: 150px;
+}
+
+.profile-name{
+  margin-top: 8px;
+  margin-right: 8px;
+  margin-left: 8px;
+  font-weight: bold;
+}
+
+.ck-editor__editable_inline{
+  min-height: 400px;
+  max-height: 400px;
+}
+
+.custom-sidebar-wrapper{
+  position: fixed;
+  top: 0;
+  height: 100%;
+  background: #eee;
+  padding: 16px;
+  width: 320px;
+  right: -320px;
+  height: 100vh;
+  overflow: scroll;
+}
+
+.custom-sidebar-wrapper.open{
+  right: 0;
+  z-index: 999;
+}
+
+.custom-sidebar-icon{
+  display: flex;
+  justify-content: flex-end;
+  margin: 16px 0px 16px 16px;
+}
+
+.custom-sidebar-icon img{
+  width: 24px;
+  height: 24px;
+}
+
+.tox-statusbar__branding{
+  display: none;
+}
+
+.custom-modal-backdrop{
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: none;
+  z-index: -1;
+  width: 100vw;
+  height: 100vh;
+  opacity: 0.5;
+  background-color: #000;
+}
+
+.custom-modal-backdrop.show{
+  display: block;
+  z-index: 998;
+}
+
+.project-repository-results{
+  border: 1px solid #eee;
+}
+
+.project-repository-results-item{
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+}
+
+.project-repository-label{
+  width: 100%;
+}
+
+.project-repository-clear{
+  background: #111;
+  padding: 5px;
+  border-radius: 5px;
+  color: #ffff;
+  font-size: 12px;
+  float: right;
+}
+
+.project-repository-results-item:hover{
+  background: #f8f8f8;
+}
+
+.blog-full-image{
+  vertical-align: middle;
+  border-style: none;
+  width: 100%;
+  /* margin: 0 -10vw -165px; */
+  background: #c5d2d9 50%;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: -100px;
+}
+
+.blog-text{
+  background: #fff;
+  margin: 20px;
+  padding: 20px;
+}
+h1.custom,h2.custom,h3.custom,h4.custom,h5.custom,h6.custom{
+  font-weight: 300;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+.blog_content{
+  font-size: 16px;
+  font-weight: 300;
+  word-spacing: 2.1px;
+  letter-spacing: 0.3px;
+}

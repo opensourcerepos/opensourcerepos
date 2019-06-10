@@ -1,0 +1,58 @@
+<header class="mb-4">
+<div class="container">
+<nav class="navbar navbar-expand-lg navbar-light px-0 mx-0">
+        <a class="navbar-brand" href="/">OpenSourceRepos</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li>
+              <form class="form-inline my-2 my-lg-0" method="GET" action="/app/search">
+                <input class="form-control mr-sm-2 custom-input-element" id="searchNavBar" name="repo" type="search" placeholder="Search repository" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+              </form>
+            </li>
+          </ul>
+
+        <div class="my-lg-0">
+          <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                  <a class="nav-link" href="/app/about">About<span class="sr-only">(current)</span></a>
+                </li>
+              <li class="nav-item active" id="navbar-newblog-link">
+
+              </li>
+              <li class="nav-item active" id="navbar-profile-link">
+
+              </li>
+          </ul>
+        </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+  <script>
+function signinWithGithub(){
+  window.location.href = "https://github.com/login/oauth/authorize?client_id=<%- github.clientId %>&redirect_uri=<%- base_url %>/signin/callback/github";
+}
+
+$(document).ready(function(){
+  var username = Cookies.get('username');
+if(typeof username === 'undefined'){
+  $("#navbar-profile-link").html(`
+    <a href="https://github.com/login/oauth/authorize?scope=user:email%20read:user&client_id=<%- github.clientId %>" class="btn btn-primary">Sign in</a>
+  `);
+}else{
+  $("#navbar-newblog-link").html(`
+    <a class="nav-link" href="/app/new-blog">New Blog<span class="sr-only">(current)</span></a>
+  `)
+  $("#navbar-profile-link").html('<a class="nav-link" href="/app/profile">'+username+'</a>');
+}
+
+})
+
+</script>

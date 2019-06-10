@@ -1,0 +1,44 @@
+{
+  "name": "repo",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "repo_created_at": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "owner": {
+      "type": "object"
+    },
+    "repoIdentifier": {
+      "type": "string"
+    },
+    "full_name": {
+      "type": "string"
+    },
+    "license": {
+      "type": "object"
+    },
+    "type_of_vcs": {
+      "type": "object"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

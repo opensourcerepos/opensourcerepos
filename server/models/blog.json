@@ -1,0 +1,109 @@
+{
+  "name": "blog",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "excerpt": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "created_user_id": {
+      "type": "string"
+    },
+    "last_updated_at": {
+      "type": "string"
+    },
+    "edited_user_id": {
+      "type": "array"
+    },
+    "meta_title": {
+      "type": "string"
+    },
+    "meta_description": {
+      "type": "string"
+    },
+    "tag1": {
+      "type": "string"
+    },
+    "tag2": {
+      "type": "string"
+    },
+    "tag3": {
+      "type": "string"
+    },
+    "tag4": {
+      "type": "string"
+    },
+    "tag5": {
+      "type": "string"
+    },
+    "background_image": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "publish_date": {
+      "type": "string"
+    },
+    "og_image": {
+      "type": "string"
+    },
+    "og_title": {
+      "type": "string"
+    },
+    "og_description": {
+      "type": "string"
+    },
+    "twitter_image": {
+      "type": "string"
+    },
+    "twitter_title": {
+      "type": "string"
+    },
+    "twitter_description": {
+      "type": "string"
+    },
+    "canonical_url": {
+      "type": "string"
+    },
+    "repo_id": {
+      "type": "string"
+    },
+    "repo_version": {
+      "type": "string"
+    },
+    "repo_branch": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "repo": {
+      "type": "belongsTo",
+      "model": "repo",
+      "foreignKey": "repo_id",
+      "options": {
+        "nestRemoting": true
+      }
+    },
+    "blog-app-users": {
+      "type": "belongsTo",
+      "model": "app-users",
+      "foreignKey": "created_user_id",
+      "options": {
+        "nestRemoting": true
+      }
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

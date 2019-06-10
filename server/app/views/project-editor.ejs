@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Blog Editor</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Create a new blog. You can write about the architecture of the open source projects, or its code walkthrough or any learnings that you want to share regarding that project."/>
+    <%- include('./templates/head') -%>
+    <link rel='stylesheet' href='https://opensourcerepos.sfo2.cdn.digitaloceanspaces.com/javascripts/datetimepicker/jquery.datetimepicker.min.css'/>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <%- include('./templates/navbar', {
+      github: github,
+      base_url: base_url
+    }) -%>
+    <div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div id="project-blog-status" class="alert alert-primary d-none" role="alert"></div>
+            <div class="custom-sidebar-icon">
+              <img src="/app/images/settings.svg" alt="open settings menu" onclick="openProjectMenu()"/>
+            </div>
+            <%- include('./templates/project-editor',{
+              blog: blog
+            }) -%>
+
+        </div>
+        <div class="custom-sidebar-wrapper">
+          <div class="custom-sidebar-content">
+            <%- include('./templates/project-meta-data', {
+              blog: blog
+            }) -%>
+            <%- include('./templates/project-action-buttons') -%>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%- include('./templates/footer') -%>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/5.0.4/tinymce.min.js"></script>
+    <script>
+      tinymce.init({
+        selector: '#project-description',
+        init_instance_callback : "project_init",
+        toolbar: 'undo redo styleselect bold italic bullist numlist outdent indent | code | codesample | image | link | table tabledelete | tableprops tablerowprops tablecellprops | tableinsertrowbefore tableinsertrowafter tabledeleterow | tableinsertcolbefore tableinsertcolafter tabledeletecol',
+        images_upload_url: '/app/imageupload',
+        plugins: 'code image imagetools link table codesample',
+        height: 600,
+        menubar: false,
+        statusbar: false,
+        content_css: '/app/stylesheets/editor.css?a=1',
+        codesample_languages: [
+          {text: 'HTML/XML', value: 'markup'},
+          {text: 'JavaScript', value: 'javascript'},
+          {text: 'CSS', value: 'css'},
+          {text: 'PHP', value: 'php'},
+          {text: 'Ruby', value: 'ruby'},
+          {text: 'Python', value: 'python'},
+          {text: 'Java', value: 'java'},
+          {text: 'C', value: 'c'},
+          {text: 'C#', value: 'csharp'},
+          {text: 'C++', value: 'cpp'}
+        ],
+      });
+    </script>
+
+    <script src="/javascripts/project-editor.js"></script>
+    <script src="https://opensourcerepos.sfo2.cdn.digitaloceanspaces.com/javascripts/datetimepicker/jquery.datetimepicker.full.min.js"></script>
+    <script>
+        jQuery('#project-repository-publish-date').datetimepicker({
+          minDate: 0,
+          minTime: 0
+        });
+      </script>
+    <div class="custom-modal-backdrop fade"></div>
+  </body>
+</html>

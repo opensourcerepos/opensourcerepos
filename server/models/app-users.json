@@ -1,0 +1,38 @@
+{
+  "name": "app-users",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "source": {
+      "type": "string"
+    },
+    "access_token": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "image_url": {
+      "type": "string"
+    },
+    "about": {
+      "type": "string"
+    },
+    "user_type": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

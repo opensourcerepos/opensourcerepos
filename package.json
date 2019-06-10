@@ -1,0 +1,48 @@
+{
+  "name": "opensourcerepos-loopback3",
+  "version": "1.0.0",
+  "main": "server/server.js",
+  "engines": {
+    "node": ">=6"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "start:prod": "NODE_ENV=production node server/update-tables.js && NODE_ENV=production node .",
+    "start": "NODE_ENV=development node server/update-tables.js && NODE_ENV=development node .",
+    "posttest": "npm run lint"
+  },
+  "dependencies": {
+    "@octokit/rest": "^16.25.1",
+    "aws-sdk": "^2.457.0",
+    "axios": "^0.18.0",
+    "body-parser": "^1.19.0",
+    "compression": "^1.0.3",
+    "cookie-parser": "^1.4.4",
+    "cors": "^2.5.2",
+    "ejs": "^2.6.1",
+    "ejs-lint": "^0.3.0",
+    "fs-extra": "^8.0.0",
+    "helmet": "^3.10.0",
+    "lodash": "^4.17.11",
+    "loopback": "^3.22.0",
+    "loopback-boot": "^2.6.5",
+    "loopback-component-explorer": "^6.2.0",
+    "loopback-connector-postgresql": "^3.6.1",
+    "moment": "^2.24.0",
+    "multer": "^1.4.1",
+    "multer-s3": "^2.9.0",
+    "node-schedule": "^1.3.2",
+    "serve-favicon": "^2.0.1",
+    "strong-error-handler": "^3.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^3.17.1",
+    "eslint-config-loopback": "^8.0.0"
+  },
+  "repository": {
+    "type": "",
+    "url": ""
+  },
+  "license": "UNLICENSED",
+  "description": "opensourcerepos-loopback3"
+}

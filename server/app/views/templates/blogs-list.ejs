@@ -1,0 +1,47 @@
+<!-- <div class="row">
+  <div class="card  ml-2 mr-2 mb-2 mt-2" style="width: 18rem;">
+    <img src="..." class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title"><a href="#">Architecture of webpack</a></h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    </div>
+  </div>
+
+  <div class="card ml-2 mr-2 mb-2 mt-2" style="width: 18rem;">
+      <img src="..." class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title"><a href="#">Keytakeways of react application</a></h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      </div>
+    </div>
+
+</div> -->
+<div class="row">
+  <% data.forEach(function(blog){ %>
+    <div class="card  ml-2 mr-2 mb-2 mt-2" style="width: 18rem;">
+        <!-- <img src="<%= blog.background_image %>" class="card-img-top" alt="<%= blog.title %>"> -->
+        <div class="card-body">
+          <% if(blog.status === 'draft') { %>
+            <h5 class="card-title"><a href="<%= blog.previewurl %>" data-testid="blog-title">Draft - <%= blog.title %></a></h5>
+          <% }else { %>
+            <h5 class="card-title"><a href="<%= blog.url %>" data-testid="blog-title"><%= blog.title %></a></h5>
+          <% } %>
+            <p class="card-text"><%= blog.meta_description %></p>
+          <% if(blog.status === 'draft') { %>
+            <button type="button" data-testid="repo_name" class="btn btn-secondary btn-sm">Draft</button>
+          <% } %>
+          <div class="card-tags">
+            <% if(blog.repo) { %>
+            <button type="button" data-testid="repo_name" class="btn btn-secondary btn-sm"><img height="16" width="20" class="mr-2" src="/images/github_white.svg" alt="github repo"/><%= blog.repo.full_name %></button>
+            <% } %>
+          </div>
+          <div class="card-tags mt-2">
+            <button type="button" class="btn btn-secondary btn-sm"><img height="16" width="20" class="mr-1" src="/images/github_tag_white.svg" alt="repository version"/> <%= blog.repo_version %></button>
+            <button type="button" class="btn btn-secondary btn-sm"><img height="16" width="20" class="mr-1" src="/images/github_branch_white.svg" alt="repository branch"/><%= blog.repo_branch %></button>
+
+          </div>
+        </div>
+
+      </div>
+  <% }) %>
+  </div>

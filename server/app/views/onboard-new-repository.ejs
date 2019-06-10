@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Onboard New Repository</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <%- include('./templates/head') -%>
+  </head>
+  <body>
+    <%- include('./templates/navbar', {
+      github: github,
+      base_url: base_url
+    }) -%>
+    <div class="container">
+      <form class="mt-2">
+          <label for="onboard-repository-url">Repository Url</label>
+          <input type="text" class="form-control" aria-describedby="onboard-repository-url">
+          <small id="onboard-repository-url" class="form-text text-muted">Example - https://github.com/facebook/react</small>
+      </form>
+    </div>
+    <%- include('./templates/footer') -%>
+  </body>
+</html>

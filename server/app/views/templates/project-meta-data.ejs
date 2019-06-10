@@ -1,0 +1,103 @@
+<div class="d-flex d-flex-column custom-sidebar">
+  <h4>Meta Information</h4>
+  <form>
+    <% if(blog.repo && blog.repo.repoIdentifier) {%>
+      <input id="project-repository-id" value="<%- blog.repo.repoIdentifier %>" hidden>
+    <% }else { %>
+      <input id="project-repository-id" hidden>
+    <% } %>
+
+    <% if(blog.repo && blog.blog_draft_id) {%>
+      <input id="project-repository-draft-id" value="<%- blog.blog_draft_id %>" hidden>
+    <% }else { %>
+      <input id="project-repository-draft-id" hidden>
+    <% } %>
+
+    <input id="project-repository-db-id" hidden>
+    <div class="form-group">
+      <label for="project-repository" class="project-repository-label">Repository <button type="button" class="btn btn-sm project-repository-clear" onclick="clearSearchResults()">clear</button></label>
+      <input onkeypress="searchRepository()" type="search" id="project-repository" class="form-control" aria-describedby="search repository" placeholder="Search Repository">
+      <div id="project-repository-results" class="shadow bg-white rounded"></div>
+      <div id="project-repository-selected" class="mt-2">
+        <% if(blog.repo && blog.repo.full_name) {%>
+          <button type="button" class="btn btn-secondary btn-sm"><%- blog.repo.full_name %></button>
+        <% } %>
+      </div>
+    </div>
+    <div class="form-group disabled">
+      <label for="project-repository-repo-version">Repository Version</label>
+      <select class="custom-select mb-2" id="project-repository-repo-version">
+          <% if(blog.repo_version) { %>
+            <option selected><%- blog.repo_version %></option>
+          <% } %>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="project-repository-repo-version">Repository Branch</label>
+      <select class="custom-select mb-2" id="project-repository-repo-branch">
+        <% if(blog.repo_branch) { %>
+          <option selected><%- blog.repo_branch %></option>
+        <% } %>
+      </select>
+    </div>
+    <!-- <div class="form-group">
+      <label for="project-repository">Background Image Url</label>
+      <input type="search" class="form-control" aria-describedby="background image" id="project-repository-background-img">
+    </div> -->
+    <!-- <div class="form-group">
+      <label for="project-repository-blog-url">Blog Url</label>
+      <input type="search" class="form-control" aria-describedby="Url for the blog" placeholder="Blog Url" id="project-repository-blog-url">
+    </div> -->
+    <!-- <div class="form-group">
+        <label for="project-repository-tags">Select all tags that may apply</label>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+          <label class="form-check-label" for="defaultCheck1">
+              Architecture of repo
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+          <label class="form-check-label" for="defaultCheck2">
+              Code walkthrough of repo
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="defaultCheck3">
+          <label class="form-check-label" for="defaultCheck3">
+              Tools/Dependencies review
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="defaultCheck4">
+          <label class="form-check-label" for="defaultCheck4">
+              Key Takeways of repo
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="defaultCheck5">
+          <label class="form-check-label" for="defaultCheck5">
+              Other
+          </label>
+        </div>
+    </div> -->
+    <div class="form-group">
+      <label for="project-repository-publish-date">Publish Date</label>
+      <input type="search" class="form-control" aria-describedby="publish date" placeholder="YYYY/MM/DD hh:mm" id="project-repository-publish-date">
+    </div>
+    <div class="form-group">
+      <label for="project-repository-excerpt-seo">Excerpt</label>
+      <textarea maxlength="150" rows="5" class="form-control" aria-describedby="excerpt for blog" placeholder="Excerpt for SEO" id="project-repository-excerpt-seo"><% if(blog.meta_description){ %><%- blog.meta_description %><% } %></textarea>
+      <small class="form-text text-muted">Maximum 150 words</small>
+    </div>
+
+    <!-- <div class="form-group">
+      <label for="exampleFormControlSelect1">Type of blog</label>
+      <select class="form-control" id="exampleFormControlSelect1">
+        <option>Code walkthrough</option>
+        <option>Architecture</option>
+        <option>Key Takeways</option>
+      </select>
+      </div> -->
+  </form>
+</div>
