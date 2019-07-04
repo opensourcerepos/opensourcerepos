@@ -4,13 +4,14 @@
 } */
 body{
   background: #fff !important;
-  font-family: 'Merriweather', serif;
+  font-family: sans-serif;
   line-height: 1.9;
 }
 header{
   /* position: fixed; */
   min-width: auto;
-  box-shadow: 0 1px 0 rgba(12,13,14,0.1), 0 1px 6px rgba(59,64,69,0.1);
+  /* box-shadow: 0 1px 0 rgba(12,13,14,0.1), 0 1px 6px rgba(59,64,69,0.1); */
+  background: #111;
 }
 a {
   color: #00B7FF;
@@ -34,6 +35,11 @@ a {
 .ck-editor__editable_inline{
   min-height: 400px;
   max-height: 400px;
+}
+
+.custom-input-element{
+  background: #aaa;
+  border: none;
 }
 
 .custom-sidebar-wrapper{
@@ -138,4 +144,8 @@ h1.custom,h2.custom,h3.custom,h4.custom,h5.custom,h6.custom{
   font-weight: 300;
   word-spacing: 2.1px;
   letter-spacing: 0.3px;
+}
+
+.search-submit-button{
+  color: #fff;
 }
