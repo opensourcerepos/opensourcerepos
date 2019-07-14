@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>How does react loadable dynamically import components?</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content=""/>
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+<link rel="manifest" href="/images/site.webmanifest">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-141552683-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-141552683-1');
+</script>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/prism/prism.css' />
+  </head>
+  <body>
+    <header class="mb-4">
+<div class="container">
+<nav class="navbar navbar-expand-lg navbar-dark px-0 mx-0">
+        <a class="navbar-brand" href="/">OpenSourceRepos</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li>
+              <form class="form-inline my-2 my-lg-0" method="GET" action="/app/search">
+                <input class="form-control mr-sm-2 custom-input-element" id="searchNavBar" name="repo" type="search" placeholder="Search repository" aria-label="Search">
+                <button class="btn my-2 my-sm-0 search-submit-button" type="submit">Search</button>
+              </form>
+            </li>
+          </ul>
+
+        <div class="my-lg-0">
+          <ul class="navbar-nav mr-auto">
+              <li class="nav-item active" id="navbar-newblog-link">
+
+              </li>
+              <li class="nav-item active" id="navbar-profile-link">
+
+              </li>
+          </ul>
+        </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+  <script>
+function signinWithGithub(){
+  window.location.href = "https://github.com/login/oauth/authorize?client_id=86c62f3ed3258e96e6a0&redirect_uri=http://localhost:8000/signin/callback/github";
+}
+
+$(document).ready(function(){
+  var username = Cookies.get('username');
+if(typeof username === 'undefined'){
+  $("#navbar-profile-link").html(`
+    <a href="https://github.com/login/oauth/authorize?scope=user:email%20read:user&client_id=86c62f3ed3258e96e6a0" class="btn btn-primary">Sign in</a>
+  `);
+}else{
+  $("#navbar-newblog-link").html(`
+    <a class="nav-link" href="/app/new-blog">New Blog<span class="sr-only">(current)</span></a>
+  `)
+  $("#navbar-profile-link").html('<a class="nav-link" href="/app/profile">'+username+'</a>');
+}
+
+})
+
+</script>
+    <div class="container">
+    <div class="row mx-0 px-0">
+      <!-- <div class="col-md-12">
+        <img src="" alt="How does react loadable dynamically import components?" class="blog-full-image"/>
+      </div> -->
+      <div class="col-md-8 p3  rounded bg-white blog_content border-bottom">
+          <div class="col-md-12 p-3 rounded bg-white blog_content border-bottom">
+            <h4>How does react loadable dynamically import components?</h4>
+          </div>
+          <div class="col-md-12 p-3 rounded bg-white blog_content">
+            <p style="box-sizing: border-box; margin-top: 0px; margin-bottom: 1rem; color: #212529;">React Loadable is a higher order component on top of the&nbsp;<a style="box-sizing: border-box; color: #00b7ff; text-decoration-line: none;" href="https://github.com/tc39/proposal-dynamic-import" target="_blank" rel="noopener">import</a>. import allows you to dynamically import the modules, and it is at the stage 3 proposal at tc39. You can check the status&nbsp;<a style="box-sizing: border-box; color: #00b7ff; text-decoration-line: none;" href="https://github.com/tc39/proposals" target="_blank" rel="noopener">here</a>. You can use babel and enable the polyfill to use the import statement right away in your code.</p>
+<p style="box-sizing: border-box; margin-top: 0px; margin-bottom: 1rem; color: #212529;">Actually, react-loadable is not required to import the React components dynamically. Here is an example of importing React components in the codebase without React Loadable</p>
+<div style="box-sizing: border-box; color: #212529;">
+<pre class=" language-javascript" style="box-sizing: border-box; font-size: 1em; background-position: initial; background-color: #f5f2f0; text-shadow: white 0px 1px;"><code class=" language-javascript" style="box-sizing: border-box; font-size: 1em; background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; text-shadow: white 0px 1px;"><span class="token keyword" style="box-sizing: border-box;">class</span> <span class="token class-name" style="box-sizing: border-box; color: #dd4a68;">App</span> <span class="token keyword" style="box-sizing: border-box;">extends</span> <span class="token class-name" style="box-sizing: border-box; color: #dd4a68;">Component</span><span class="token punctuation" style="box-sizing: border-box;">{</span>
+  state <span class="token operator" style="box-sizing: border-box; color: #9a6e3a;">=</span> <span class="token punctuation" style="box-sizing: border-box;">{</span>
+    loaded<span class="token punctuation" style="box-sizing: border-box;">:</span> <span class="token boolean" style="box-sizing: border-box;">false</span>
+  <span class="token punctuation" style="box-sizing: border-box;">}</span>
+  elem <span class="token operator" style="box-sizing: border-box; color: #9a6e3a;">=</span> <span class="token punctuation" style="box-sizing: border-box;">{</span><span class="token punctuation" style="box-sizing: border-box;">}</span><span class="token punctuation" style="box-sizing: border-box;">;</span>
+  <span class="token function-variable function" style="box-sizing: border-box;">init</span> <span class="token operator" style="box-sizing: border-box; color: #9a6e3a;">=</span> <span class="token punctuation" style="box-sizing: border-box;">(</span><span class="token punctuation" style="box-sizing: border-box;">)</span><span class="token operator" style="box-sizing: border-box; color: #9a6e3a;">=&gt;</span><span class="token punctuation" style="box-sizing: border-box;">{</span>
+    <span class="token keyword" style="box-sizing: border-box;">import</span><span class="token punctuation" style="box-sizing: border-box;">(</span><span class="token string" style="box-sizing: border-box;">'./Test'</span><span class="token punctuation" style="box-sizing: border-box;">)</span><span class="token punctuation" style="box-sizing: border-box;">.</span><span class="token function" style="box-sizing: border-box;">then</span><span class="token punctuation" style="box-sizing: border-box;">(</span><span class="token parameter" style="box-sizing: border-box;">component</span><span class="token operator" style="box-sizing: border-box; color: #9a6e3a;">=&gt;</span><span class="token punctuation" style="box-sizing: border-box;">{</span>
+      <span class="token keyword" style="box-sizing: border-box;">this</span><span class="token punctuation" style="box-sizing: border-box;">.</span>elem <span class="token operator" style="box-sizing: border-box; color: #9a6e3a;">=</span> React<span class="token punctuation" style="box-sizing: border-box;">.</span><span class="token function" style="box-sizing: border-box;">createElement</span><span class="token punctuation" style="box-sizing: border-box;">(</span>component<span class="token punctuation" style="box-sizing: border-box;">.</span>default<span class="token punctuation" style="box-sizing: border-box;">)</span>
+      <span class="token keyword" style="box-sizing: border-box;">this</span><span class="token punctuation" style="box-sizing: border-box;">.</span><span class="token function" style="box-sizing: border-box;">setState</span><span class="token punctuation" style="box-sizing: border-box;">(</span><span class="token punctuation" style="box-sizing: border-box;">{</span>
+        loaded<span class="token punctuation" style="box-sizing: border-box;">:</span> <span class="token boolean" style="box-sizing: border-box;">true</span>
+      <span class="token punctuation" style="box-sizing: border-box;">}</span><span class="token punctuation" style="box-sizing: border-box;">)</span>
+    <span class="token punctuation" style="box-sizing: border-box;">}</span><span class="token punctuation" style="box-sizing: border-box;">)</span>
+  <span class="token punctuation" style="box-sizing: border-box;">}</span>
+  
+  <span class="token function" style="box-sizing: border-box;">componentDidMount</span><span class="token punctuation" style="box-sizing: border-box;">(</span><span class="token punctuation" style="box-sizing: border-box;">)</span><span class="token punctuation" style="box-sizing: border-box;">{</span>
+    <span class="token keyword" style="box-sizing: border-box;">this</span><span class="token punctuation" style="box-sizing: border-box;">.</span><span class="token function" style="box-sizing: border-box;">init</span><span class="token punctuation" style="box-sizing: border-box;">(</span><span class="token punctuation" style="box-sizing: border-box;">)</span><span class="token punctuation" style="box-sizing: border-box;">;</span>
+  <span class="token punctuation" style="box-sizing: border-box;">}</span>
+
+  <span class="token function" style="box-sizing: border-box;">render</span><span class="token punctuation" style="box-sizing: border-box;">(</span><span class="token punctuation" style="box-sizing: border-box;">)</span><span class="token punctuation" style="box-sizing: border-box;">{</span>
+    <span class="token keyword" style="box-sizing: border-box;">return</span> <span class="token punctuation" style="box-sizing: border-box;">(</span>
+      <span class="token operator" style="box-sizing: border-box; color: #9a6e3a;">&lt;</span>div<span class="token operator" style="box-sizing: border-box; color: #9a6e3a;">&gt;</span>
+      <span class="token punctuation" style="box-sizing: border-box;">{</span>
+        <span class="token keyword" style="box-sizing: border-box;">this</span><span class="token punctuation" style="box-sizing: border-box;">.</span>state<span class="token punctuation" style="box-sizing: border-box;">.</span>loaded<span class="token operator" style="box-sizing: border-box; color: #9a6e3a;">?</span> <span class="token keyword" style="box-sizing: border-box;">this</span><span class="token punctuation" style="box-sizing: border-box;">.</span>elem<span class="token punctuation" style="box-sizing: border-box;">:</span> <span class="token string" style="box-sizing: border-box;">'Loading...'</span>
+      <span class="token punctuation" style="box-sizing: border-box;">}</span>
+      <span class="token operator" style="box-sizing: border-box; color: #9a6e3a;">&lt;</span><span class="token operator" style="box-sizing: border-box; color: #9a6e3a;">/</span>div<span class="token operator" style="box-sizing: border-box; color: #9a6e3a;">&gt;</span>
+    <span class="token punctuation" style="box-sizing: border-box;">)</span><span class="token punctuation" style="box-sizing: border-box;">;</span>
+  <span class="token punctuation" style="box-sizing: border-box;">}</span>
+<span class="token punctuation" style="box-sizing: border-box;">}</span>
+
+<span class="token keyword" style="box-sizing: border-box;">export</span> <span class="token keyword" style="box-sizing: border-box;">default</span> App<span class="token punctuation" style="box-sizing: border-box;">;</span></code></pre>
+</div>
+<p style="box-sizing: border-box; margin-top: 0px; margin-bottom: 1rem; color: #212529;">As shown above, we are importing the Test component using import. import returns a promise, which can be assigned to a variable and rendered.&nbsp;</p>
+<p style="box-sizing: border-box; margin-top: 0px; margin-bottom: 1rem; color: #212529;">One point to note is that because "import" is at stage 3 proposal, you will require babel polyfill to make it run in your codebase. If you are using create-react-app babel preset, then you will get the polyfill for import by default. Else, you need to install the following polyfill</p>
+<p style="box-sizing: border-box; margin-top: 0px; margin-bottom: 1rem; color: #212529;"><a style="box-sizing: border-box; color: #00b7ff; text-decoration-line: none;" href="https://babeljs.io/docs/en/babel-plugin-syntax-dynamic-import" target="_blank" rel="noopener">@babel/plugin-syntax-dynamic-import</a>&nbsp;</p>
+<h4 style="box-sizing: border-box; margin-top: 0px; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; font-size: 1.5rem; color: #212529;">Why use react loadable?</h4>
+<p style="box-sizing: border-box; margin-top: 0px; margin-bottom: 1rem; color: #212529;">React loadable provides features like showing loading state, delaying the load of the component, timeout and error handling, server-side rendering, etc. Although it relies on the import statement of the babel to do the core heavy lifting, it makes it up by providing additional features as mentioned above. If you write your own higher-order component on top of "import", then it will end up similar to react loadable, give and take some features.&nbsp;</p>
+          </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="p-3 rounded bg-white">
+          <h5>About this repository</h5>
+          <div class="row">
+            <div class="col-md-12 mb-2">
+              <img height="24" width="24" class="mr-2" src="/images/github.svg" alt="github repo"/>
+              
+                <a href="https://github.com/jamiebuilds/react-loadable" target="_blank">jamiebuilds/react-loadable</a>
+              
+            </div>
+          </div>
+          <div class="row">
+              <div class="col-md-6 mb-2">
+                  <img height="16" width="20" class="mr-1" src="/images/github_branch.svg" alt="repository branch"/> master
+                </div>
+                <div class="col-md-6 mb-2">
+                  <img height="16" width="20" class="mr-1" src="/images/github_tag.svg" alt="repository version"/> v5.5.0
+                </div>
+
+          </div>
+          <div class="row">
+              <div class="col-md-12 mt-2 mb-2">
+                
+                :hourglass_flowing_sand: A higher order component for loading components with promises.
+                
+              </div>
+          </div>
+        </div>
+        <div class="p-3 mt-4 rounded bg-white">
+            <h5>About this blog</h5>
+            <div class="row">
+
+                <div class="col-md-12 mt-2 mb-2">
+                  Learn how react loadable uses import to dynamically import the react components in the application and the additional features.
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 mt-2 mb-2">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <img height="16" width="20" class="mr-1" src="/images/create.svg" alt="created on"/> July 14th 2019, 9:03
+                    </div>
+                  </div>
+                  
+                  <div class="row">
+                    <div class="col-md-12">
+                      <img height="16" width="20" class="mr-1" src="/images/edited.svg" alt="last edited on"/> July 14th 2019, 9:03
+                    </div>
+                  </div>
+                  
+                </div>
+            </div>
+          </div>
+
+          <div class="p-3 mt-4 rounded bg-white" id="blog-action-buttons">
+
+
+            </div>
+      </div>
+    </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.11/lodash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+<!-- Footer -->
+<footer class="page-footer font-small blue pt-4">
+
+    <!-- Footer Links -->
+    <div class="container text-center text-md-left">
+
+      <!-- Grid row -->
+      <div class="row">
+
+        <!-- Grid column -->
+        <div class="col-md-8 mt-md-0 mt-3">
+
+          <!-- Content -->
+          <h5>About</h5>
+          <p>Open source repos is a open source project to make the developers understand the codebase and architecture of the open source projecs. <a href="/app/about" target="_blank">Read more</a></p>
+
+        </div>
+        <!-- Grid column -->
+
+        <hr class="clearfix w-100 d-none d-sm-none d-md-none pb-3">
+
+        <!-- Grid column -->
+        <div class="col-md-4 mb-md-0 mb-3">
+
+          <div class="d-flex flex-column justify-content-end justify-content-md-center">
+          <!-- Links -->
+          <h5>Social</h5>
+
+          <ul class="list-unstyled">
+            <li>
+              <a href="https://github.com/opensourcerepos" target="_blank"><img height="16" width="20" class="mr-1" src="/images/github.svg" alt="github repo">OpenSourceRepos</a>
+            </li>
+            <li>
+              <a href="https://twitter.com/OpenSourceRepos" target="_blank"><img height="16" width="20" class="mr-1" src="/images/twitter.svg" alt="twitter handle">OpenSourceRepos</a>
+            </li>
+          </ul>
+        </div>
+
+        </div>
+        <!-- Grid column -->
+
+      </div>
+      <!-- Grid row -->
+
+    </div>
+    <!-- Footer Links -->
+  </footer>
+  <!-- Footer -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/javascripts/prism/prism.js"></script>
+    <script>
+
+      $(document).ready(function(){
+        var username = Cookies.get('username');
+        if(typeof username !== 'undefined'){
+          axios({
+            url: '/app/blogs/get_actions_content',
+            method: 'POST',
+            data: {
+              id: '18',
+              title: 'How does react loadable dynamically import components?',
+              created_user_id: '2'
+            },
+            responseType: 'text'
+          }).then(response=>{
+            $("#blog-action-buttons").html(response.data);
+          })
+        }
+      })
+
+      </script>
+  </body>
+</html>

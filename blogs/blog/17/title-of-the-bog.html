@@ -1,17 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Open Source Repos | architecture and code walkthrough of open source repository</title>
-    <meta name="description" content="Open Source Repos is a blog site for explaining the architecture, code-walkthrough and key takeways for the github repository. Out main aim to is to help more developers contribute to open source projects.">
+    <title>Title of the bog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="keywords" content="opensource, blogs, architecture, code-walkthrough, repository, github, gitlab, bitbucket"/>
-    <meta name="language" content="EN">
-    <meta name="og:title" content="OpenSourceRepos"/>
-    <meta name="og:type" content="web application"/>
-    <meta name="og:url" content="https://opensourcerepos.com"/>
-    <meta name="og:image" content="https://opensourcerepos.com/images/logo.png"/>
-    <meta name="og:site_name" content="OpenSourceRepos"/>
-    <meta name="og:description" content="Open Source Repos is a blog site for explaining the architecture, code-walkthrough and key takeways for the github repository. Out main aim to is to help more developers contribute to open source projects."/>
+    <meta name="description" content=""/>
     <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
@@ -28,6 +20,7 @@
   gtag('config', 'UA-141552683-1');
 </script>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/prism/prism.css' />
   </head>
   <body>
     <header class="mb-4">
@@ -86,95 +79,79 @@ if(typeof username === 'undefined'){
 
 </script>
     <div class="container">
-      
-        <!-- <div class="row">
-  <div class="card  ml-2 mr-2 mb-2 mt-2" style="width: 18rem;">
-    <img src="..." class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title"><a href="#">Architecture of webpack</a></h5>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <div class="row mx-0 px-0">
+      <!-- <div class="col-md-12">
+        <img src="" alt="Title of the bog" class="blog-full-image"/>
+      </div> -->
+      <div class="col-md-8 p3  rounded bg-white blog_content border-bottom">
+          <div class="col-md-12 p-3 rounded bg-white blog_content border-bottom">
+            <h4>Title of the bog</h4>
+          </div>
+          <div class="col-md-12 p-3 rounded bg-white blog_content">
+            <p>Thsi is my blog.</p>
+          </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="p-3 rounded bg-white">
+          <h5>About this repository</h5>
+          <div class="row">
+            <div class="col-md-12 mb-2">
+              <img height="24" width="24" class="mr-2" src="/images/github.svg" alt="github repo"/>
+              
+                <a href="https://github.com/facebook/react" target="_blank">facebook/react</a>
+              
+            </div>
+          </div>
+          <div class="row">
+              <div class="col-md-6 mb-2">
+                  <img height="16" width="20" class="mr-1" src="/images/github_branch.svg" alt="repository branch"/> 0.3-stable
+                </div>
+                <div class="col-md-6 mb-2">
+                  <img height="16" width="20" class="mr-1" src="/images/github_tag.svg" alt="repository version"/> v16.9.0-alpha.0
+                </div>
+
+          </div>
+          <div class="row">
+              <div class="col-md-12 mt-2 mb-2">
+                
+                A declarative, efficient, and flexible JavaScript library for building user interfaces.
+                
+              </div>
+          </div>
+        </div>
+        <div class="p-3 mt-4 rounded bg-white">
+            <h5>About this blog</h5>
+            <div class="row">
+
+                <div class="col-md-12 mt-2 mb-2">
+                  Code walkthrough of React Material UI repository. Learn about monorepo used in react material ui, and description about files and folders in repo.
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 mt-2 mb-2">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <img height="16" width="20" class="mr-1" src="/images/create.svg" alt="created on"/> July 14th 2019, 8:12
+                    </div>
+                  </div>
+                  
+                  <div class="row">
+                    <div class="col-md-12">
+                      <img height="16" width="20" class="mr-1" src="/images/edited.svg" alt="last edited on"/> July 14th 2019, 8:12
+                    </div>
+                  </div>
+                  
+                </div>
+            </div>
+          </div>
+
+          <div class="p-3 mt-4 rounded bg-white" id="blog-action-buttons">
+
+
+            </div>
+      </div>
     </div>
-  </div>
-
-  <div class="card ml-2 mr-2 mb-2 mt-2" style="width: 18rem;">
-      <img src="..." class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title"><a href="#">Keytakeways of react application</a></h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      </div>
-    </div>
-
-</div> -->
-<div class="row">
-  
-    <div class="card ml-2 mr-2" style="width: 100%;border:0px;border-bottom: 1px solid #eee;">
-        <!-- <img src="" class="card-img-top" alt="This is the title of the blog"> -->
-        <div class="card-body">
-          
-            <h5 class="card-title"><a href="/app/blog/16/this-is-the-title-of-the-blog" data-testid="blog-title">This is the title of the blog</a></h5>
-          
-            <p class="card-text"></p>
-          
-          <div class="card-tags">
-            
-            <button type="button" data-testid="repo_name" class="btn btn-secondary btn-sm"><img height="16" width="20" class="mr-2" src="/images/github_white.svg" alt="github repo"/>facebook/react</button>
-            
-          </div>
-          <div class="card-tags mt-2">
-            <button type="button" class="btn btn-secondary btn-sm"><img height="16" width="20" class="mr-1" src="/images/github_tag_white.svg" alt="repository version"/> v16.9.0-alpha.0</button>
-            <button type="button" class="btn btn-secondary btn-sm"><img height="16" width="20" class="mr-1" src="/images/github_branch_white.svg" alt="repository branch"/>0.3-stable</button>
-
-          </div>
-        </div>
-
-      </div>
-  
-    <div class="card ml-2 mr-2" style="width: 100%;border:0px;border-bottom: 1px solid #eee;">
-        <!-- <img src="" class="card-img-top" alt="Title of the bog"> -->
-        <div class="card-body">
-          
-            <h5 class="card-title"><a href="/app/blog/17/title-of-the-bog" data-testid="blog-title">Title of the bog</a></h5>
-          
-            <p class="card-text">Code walkthrough of React Material UI repository. Learn about monorepo used in react material ui, and description about files and folders in repo.</p>
-          
-          <div class="card-tags">
-            
-            <button type="button" data-testid="repo_name" class="btn btn-secondary btn-sm"><img height="16" width="20" class="mr-2" src="/images/github_white.svg" alt="github repo"/>facebook/react</button>
-            
-          </div>
-          <div class="card-tags mt-2">
-            <button type="button" class="btn btn-secondary btn-sm"><img height="16" width="20" class="mr-1" src="/images/github_tag_white.svg" alt="repository version"/> v16.9.0-alpha.0</button>
-            <button type="button" class="btn btn-secondary btn-sm"><img height="16" width="20" class="mr-1" src="/images/github_branch_white.svg" alt="repository branch"/>0.3-stable</button>
-
-          </div>
-        </div>
-
-      </div>
-  
-    <div class="card ml-2 mr-2" style="width: 100%;border:0px;border-bottom: 1px solid #eee;">
-        <!-- <img src="" class="card-img-top" alt="How does react loadable dynamically import components?"> -->
-        <div class="card-body">
-          
-            <h5 class="card-title"><a href="/app/blog/18/how-does-react-loadable-dynamically-import-components" data-testid="blog-title">How does react loadable dynamically import components?</a></h5>
-          
-            <p class="card-text">Learn how react loadable uses import to dynamically import the react components in the application and the additional features.</p>
-          
-          <div class="card-tags">
-            
-            <button type="button" data-testid="repo_name" class="btn btn-secondary btn-sm"><img height="16" width="20" class="mr-2" src="/images/github_white.svg" alt="github repo"/>jamiebuilds/react-loadable</button>
-            
-          </div>
-          <div class="card-tags mt-2">
-            <button type="button" class="btn btn-secondary btn-sm"><img height="16" width="20" class="mr-1" src="/images/github_tag_white.svg" alt="repository version"/> v5.5.0</button>
-            <button type="button" class="btn btn-secondary btn-sm"><img height="16" width="20" class="mr-1" src="/images/github_branch_white.svg" alt="repository branch"/>master</button>
-
-          </div>
-        </div>
-
-      </div>
-  
-  </div>
-      
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
@@ -228,6 +205,28 @@ if(typeof username === 'undefined'){
     <!-- Footer Links -->
   </footer>
   <!-- Footer -->
-    <script src="/javascripts/project-list.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/javascripts/prism/prism.js"></script>
+    <script>
+
+      $(document).ready(function(){
+        var username = Cookies.get('username');
+        if(typeof username !== 'undefined'){
+          axios({
+            url: '/app/blogs/get_actions_content',
+            method: 'POST',
+            data: {
+              id: '17',
+              title: 'Title of the bog',
+              created_user_id: '2'
+            },
+            responseType: 'text'
+          }).then(response=>{
+            $("#blog-action-buttons").html(response.data);
+          })
+        }
+      })
+
+      </script>
   </body>
 </html>
